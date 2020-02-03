@@ -8,6 +8,17 @@
 
 ## EDA
 
+Upon exploring the data, I discovered that:
+
+- Users were generally more inclined to give positive reviews. <br/><br/>
+<img src="/images/rating_counts.png" width="600"/>
+
+- The most popular movies were generally rated amongst the top 5% of all movies. <br/><br/>
+<img src="/images/most_popular_movies.png" width="800"/>
+
+- The most active users were generally more critical than the average user. <br/><br/>
+<img src="/images/most_active_users.png" width="600"/>
+
 ## Modelling
 
 ### Content-based System
