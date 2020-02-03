@@ -6,6 +6,9 @@ The motivation for this project was to compare the effectiveness of some of the 
 
 ## Data Collection
 
+The dataset used for this project consisted of 25,000,000 reviews on over 60,000 movies featured on the IMDb website. This included the ratings provided by over 100,000 users along with the titles and category tags for each movie. The repository used to source this data can be found [here](https://grouplens.org/datasets/movielens/). <br/> <br/>
+I also collected the directors, actors and plotlines for each movie by making a series of requests to the OMDb database using their [public API](http://www.omdbapi.com/).
+
 ## Data Cleaning
 
 ## EDA
