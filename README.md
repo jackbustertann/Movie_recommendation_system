@@ -11,17 +11,24 @@ I also collected the directors, actors and plotlines for each movie by making a 
 
 ## Data Cleaning
 
+The cleaning process for this project involved:
+
+- One-hot encoding movie genres for the content-based model. <br/><br/>
+- Dropping movies released before 1980 to improve interpretability of recommendations. <br/><br/>
+- Dropping users with less than 1,000 reviews to improve user embeddings for matrix factorisation and nueral network models. <br/><br/>
+- Dropping movies with less than 25 reviews to improve movie embeddings for matrix factorisation model.
+
 ## EDA
 
 Upon exploring the data, I discovered that:
 
-- Users were generally more inclined to give positive reviews. <br/><br/>
+1. Users were generally more inclined to give positive reviews. <br/><br/>
 <img src="/images/rating_counts.png" width="600"/>
 
-- The most popular movies were generally rated amongst the top 5% of all movies. <br/><br/>
+2. The most popular movies were generally rated amongst the top 5% of all movies. <br/><br/>
 <img src="/images/most_popular_movies.png" width="800"/>
 
-- The most active users were generally more critical than the average user. <br/><br/>
+3. The most active users were generally more critical than the average user. <br/><br/>
 <img src="/images/most_active_users.png" width="600"/>
 
 ## Modelling
