@@ -2,6 +2,8 @@
 
 ## The Motivation
 
+The motivation for this project was to compare the effectiveness of some of the traditional approaches used in e-commerce for making personalised recommendations to online users. I was also keen to develop more of an understanding of how these systems are implemented at scale by getting some hands on experience with a distributed computing framework, such as Apache Spark.
+
 ## Data Collection
 
 ## Data Cleaning
