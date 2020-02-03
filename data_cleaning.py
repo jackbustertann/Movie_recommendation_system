@@ -2,20 +2,14 @@
 import numpy as np
 import pandas as pd
 
-import json
-from time import sleep
-from random import randint
-
 import re
 from sklearn.feature_extraction.text import CountVectorizer
 
-
-def data_cleaner(movies_file, ratings_file):
+# cleaning movies and ratings
+def data_cleaner(movies_file, ratings_file, cleaned_movies_file, cleaned_ratings_file):
     # importing movies and ratings
     movies_df = pd.read_csv(movies_file).drop(columns = ['Unnamed: 0'])
     ratings_df = pd.read_csv(ratings_file)
-
-    # cleaning movies
 
     # removing missing values
 
@@ -27,14 +21,17 @@ def data_cleaner(movies_file, ratings_file):
     # formatting columns
 
     # extracting release year from titles
+    # defining regex pattern for years
     year_pattern = re.compile('\((\d{4})\)')
     movies_df['releaseYear'] = movies_df['title'].map(lambda x: int(year_pattern.findall(x)[0]) if len(year_pattern.findall(x)) == 1 else np.nan)
+    # dropping rows that dont have release years
     movies_df.dropna(inplace = True)
+    # converting release year column to integer
     movies_df['releaseYear'] = movies_df['releaseYear'].astype('int')
     # removing release year from titles
+    # defining regex pattern for titles
     title_pattern = re.compile('([A-Z]{1}.+)\s\(\d{4}\)')
     movies_df['title'] = movies_df['title'].map(lambda x: title_pattern.findall(x)[0] if len(title_pattern.findall(x)) == 1 else np.nan)
-    movies_df.dropna(inplace = True)
     # converting genre and actor columns to lists
     movies_df['genres'] = movies_df['genres'].map(lambda x: x.split(', '))
     movies_df['actors'] = movies_df['actors'].map(lambda x: x.split(', '))
@@ -43,12 +40,12 @@ def data_cleaner(movies_file, ratings_file):
 
     # re-formatting genres column for vectorisation
     movies_df['genres'] = movies_df['genres'].map(lambda x: ' '.join(x))
-    # count vectorising movies
+    # creating an array of count vectorised movies
     cv = CountVectorizer()
     genres_array = cv.fit_transform(movies_df['genres'])
+    # converting array to a dataframe
     genres_df = pd.DataFrame(genres_array.todense(), columns = cv.get_feature_names(), index = movies_df.index)
     # dropping ambiguous genres and genres with counts of less than 1000 
-    # combining sci-fi columns
     genres_df.drop(columns = ['adult', 'film', 'fi', 'game', 'news', 'noir', 'reality', 'show', 'talk', 'tv', 'music', 'short'], inplace = True)
     # combining sci-fi columns
     genres_df['sciFi'] = genres_df['sci']
@@ -56,7 +53,8 @@ def data_cleaner(movies_file, ratings_file):
     # merging one-hot encoded genres with movies
     movies_df = pd.merge(movies_df, genres_df, left_index = True, right_index = True).drop(columns = ['genres'])
 
-    
+    # removing outliers
+
     # removing movies released before 1980
     before_1980 = movies_df.loc[movies_df['releaseYear'] < 1980].index
     movies_df.drop(labels = before_1980, axis = 0, inplace = True)
@@ -85,8 +83,8 @@ def data_cleaner(movies_file, ratings_file):
     more_than_25_movies = movie_counts.loc[movie_counts['reviews'] >= 25]
     ratings_df = pd.merge(ratings_df, more_than_25_movies, left_on = 'movieId', right_on = 'movieId', how = 'right')[['userId', 'movieId', 'rating', 'timestamp']].dropna()
 
-    # saving cleaned and reduced movies
-    movies_df.to_csv('movies_cleaned_and_reduced.csv')
-    ratings_df.to_csv('ratings_cleaned_and_reduced.csv')
+    # saving cleaned and reduced movies and ratings
+    movies_df.to_csv(cleaned_movies_file)
+    ratings_df.to_csv(cleaned_ratings_file)
 
     return print("files cleaned")
