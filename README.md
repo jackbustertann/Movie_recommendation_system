@@ -13,10 +13,10 @@ I also collected the directors, actors and plotlines for each movie by making a 
 
 The cleaning process for this project involved:
 
-- One-hot encoding movie genres for the content-based model. <br/><br/>
-- Dropping movies released before 1980 to improve interpretability of recommendations. <br/><br/>
-- Dropping users with less than 1,000 reviews to improve user embeddings for matrix factorisation and nueral network models. <br/><br/>
-- Dropping movies with less than 25 reviews to improve movie embeddings for matrix factorisation model.
+- One-hot encoding movie genres. <br/><br/>
+- Dropping movies released before 1980. <br/><br/>
+- Dropping users with less than 1,000 reviews. <br/><br/>
+- Dropping movies with less than 25 reviews.
 
 ## EDA
 
@@ -33,10 +33,26 @@ Upon exploring the data, I discovered that:
 
 ## Modelling
 
+The modelling process for this project involved building three recommendation systems: a content-based system, a user-based system (i.e. matrix factorisation) and a hybrid system (i.e. nueral network). 
+
+In the absence of any online feedback from users, the average cosine dissimilarity between recommendations was used to assess the effectiveness of each system. Note that this was used instead of the conventional rmse metric to account for the level of personalisation in the recommendations provided for each user.
+
 ### Content-based System
 
-### User-based System - Matrix Factorisation
+The general pipeline:
 
-### Hybrid System - Nueral Network
+1. **Tokenisation** - converting plotlines into a list of lowercase word tokens. <br/><br/>
+<img src="/images/unprocessed_plot_example.png" />
+2. **Dimensionality reduction** - removing stopwords and lemmatisation. <br/><br/>
+<img src="/images/processed_plot_example.png" />
+3. **Feature engineering** - count vectorising genres, actors, directors and normalising plotlines. <br/><br/>
+4. **Similarity scores** - computing the similarity scores between each pair of movies using the cosine similarity metric. <br/><br/>
+<img src="/images/cos_similarity.png" />
+5. **Recommendations** - sorting movies in order of similarity and recommending the top k in the list. <br/><br/>
+<img src="/images/content_recommendations.png" />
+
+### User-based System
+
+### Hybrid System
 
 ## Conclusions and Possible Extensions
