@@ -46,8 +46,9 @@ The general pipeline:
 2. **Dimensionality reduction** - removing stopwords and lemmatisation. <br/><br/>
 <img src="/images/processed_plot_example.png" /> <br/><br/>
 3. **Feature engineering** - count vectorising genres, actors, directors and normalising plotlines. <br/><br/>
+<img src="/images/one-hot_encoding_example.png" /> <br/><br/>
 4. **Similarity scores** - computing the similarity scores between each pair of movies using the cosine similarity metric. <br/><br/>
-<img src="/images/cos_similarity.png" /> <br/><br/>
+<img src="/images/similarity_scores_example.png" /> <br/><br/>
 5. **Recommendations** - sorting movies in order of similarity and recommending the top k in the list. <br/><br/>
 <img src="/images/content_recommendations.png" />
 
