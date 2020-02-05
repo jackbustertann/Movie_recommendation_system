@@ -50,6 +50,6 @@ def movie_merger(movies_file, links_file, requests_file, merged_file):
     movies_df['genres'] = movies_df['genres_y']
     movies_df['ageRating'] = movies_df['age_rating']
     movies_df.drop(columns = ['genres_y', 'age_rating'], inplace = True)
-    # saving merged dataframe to a csv file
+    # saving merged movies to csv
     movies_df.to_csv(merged_file)
     return print("files merged")
