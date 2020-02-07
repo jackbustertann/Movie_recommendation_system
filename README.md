@@ -33,9 +33,9 @@ Upon exploring the data, I discovered that:
 
 ## Modelling
 
-The modelling process for this project involved building three recommendation systems: a content-based system, a user-based system (i.e. matrix factorisation) and a hybrid system (i.e. nueral network). 
+The modelling process for this project involved building three recommendation systems: a content-based system and two user-based systems. 
 
-In the absence of any online feedback from users, the average cosine dissimilarity between recommendations was used to assess the effectiveness of each system. Note that this was used instead of the conventional rmse metric to account for the level of personalisation in the recommendations provided for each user.
+In the absence of any online feedback from users, the average cosine dissimilarity between recommendations was used to assess the effectiveness of each system. Note that this was used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of popular movies.
 
 ### Content-based System
 
@@ -52,8 +52,19 @@ The general pipeline:
 5. **Recommendations** - sorting movies in order of similarity and recommending the top k in the list. <br/><br/>
 <img src="/images/content_recommendations.png" /> <br/><br/>
 
-### User-based System
+### User-based Systems
 
-### Hybrid System
+#### Matrix Factorisation Model
+
+#### Neural Network Model
+
+The model architecture:
+
+1. **Input layer** - unique integer ids for users and movies. <br/><br/>
+2. **Embeddings** - latent features for users and movies inferred from user ratings. <br/><br/>
+3. **Dot product** - the element-wise dot product between embeddings. <br/><br/>
+4. **Hidden layers** - abstract representations of inputs derived from embeddings. <br/><br/>
+5. **Output layer** - predicted rating provided by user for movie. <br/><br/>
+<img src="/images/nn_architecture.png" /> <br/><br/>
 
 ## Conclusions and Possible Extensions
