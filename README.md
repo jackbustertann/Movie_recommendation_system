@@ -35,7 +35,7 @@ Upon exploring the data, I discovered that:
 
 The modelling process for this project involved building three recommendation systems: a content-based system and two user-based systems. 
 
-In the absence of any online feedback from users, the average cosine dissimilarity between recommendations was used to assess the effectiveness of each system. Note that this was used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of popular movies.
+In the absence of any online feedback from users, coverage and the average cosine dissimilarity between recommendations were used to assess the effectiveness of each system. These metrics were used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of movies.
 
 ### Content-based System
 
@@ -63,7 +63,7 @@ The model architecture:
 1. **Input layer** - unique integer ids for users and movies. <br/><br/>
 2. **Embeddings** - latent features for users and movies inferred from user ratings. <br/><br/>
 3. **Dot product** - the element-wise dot product between embeddings. <br/><br/>
-4. **Hidden layers** - abstract representations of inputs derived from embeddings. <br/><br/>
+4. **Hidden layer(s)** - abstract representation(s) of inputs derived from embeddings. <br/><br/>
 5. **Output layer** - predicted rating provided by user for movie. <br/><br/>
 <img src="/images/nn_architecture.png" /> <br/><br/>
 
