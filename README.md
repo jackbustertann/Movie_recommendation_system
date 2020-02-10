@@ -39,7 +39,10 @@ In the absence of any online feedback from users, coverage and the average cosin
 
 ### Content-based System
 
-The general pipeline:
+High level definition: <br/><br/>
+*Recommending movies to users based on explicit features of movies they have watched or rated highly in the past.* <br/><br/>
+
+General pipeline:
 
 1. **Tokenisation** - converting plotlines into a list of lowercase word tokens. <br/><br/>
 <img src="/images/unprocessed_plot_example.png" /> <br/><br/>
@@ -54,11 +57,23 @@ The general pipeline:
 
 ### User-based Systems
 
+High level definition: <br/><br/>
+*Recommending movies to users based on the actions of other users with similar preferences, either provided explicity during registration to the app or website or inferred implicity from their online behaviour.* <br/><br/>
+
 #### Matrix Factorisation Model
+
+Model assumptions:
+
+- *User ratings can be decomposed into a dot product between user preferences and movie features.* <br/> <br/>
+- *Users who give similar ratings for different movies must have similar preferences.* <br/> <br/>
+- *Movies that are given similar ratings by different users must have similar features.* <br/> <br/>
 
 #### Neural Network Model
 
-The model architecture:
+Model assumptions: <br/> <br/>
+*This model can be seen as an extension to the matrix factorisation model that aims to extract extra levels of abstraction from the user and movie embeddings by passing the element-wise dot product of these embeddings through additional hidden layers.* <br/> <br/>
+
+Model architecture:
 
 1. **Input layer** - unique integer ids for users and movies. <br/><br/>
 2. **Embeddings** - latent features for users and movies inferred from user ratings. <br/><br/>
