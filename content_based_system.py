@@ -67,18 +67,6 @@ def top_n_movies_list(tf_matrix, n_rec):
         top_n_movies_list.append(sorted_movie_tokens)
     return top_n_movies_list
 
-# calculating the personalisation score for a given one-hot encoded matrix of movies
-def personalisation_score(tf_matrix, n_rec):
-    top_n_movies = top_n_movies_list(tf_matrix, n_rec)
-    top_n_movies_tokens = [' '.join(movie) for movie in top_n_movies]
-    vectoriser = CountVectorizer()
-    top_n_movies_matrix = vectoriser.fit_transform(top_n_movies_tokens)
-    disimilarity_matrix = 1 - cosine_similarity(top_n_movies_matrix, top_n_movies_matrix)
-    disimilarity_matrix_sum = np.triu(disimilarity_matrix).sum()
-    n_scores = (disimilarity_matrix.shape[0]**2 - disimilarity_matrix.shape[0])/2
-    average_disimilarity = disimilarity_matrix_sum / n_scores
-    return average_disimilarity
-
 # outputing a list of recommended movie titles for a given movie
 def content_movie_recommender(content_df, tf_matrix, movie_index, n_rec):
     movie_title = content_df.loc[movie_index, 'title']
