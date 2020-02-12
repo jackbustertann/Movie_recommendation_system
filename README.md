@@ -35,7 +35,7 @@ Upon exploring the data, I discovered that:
 
 The modelling process for this project involved building three recommendation systems: a content-based system and two user-based systems. 
 
-In the absence of any online feedback from users, coverage and the average cosine dissimilarity between recommendations were used to assess the effectiveness of each system. These metrics were used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of movies.
+In the absence of any online feedback from users, coverage and average cosine dissimilarity between recommendations were used to assess the effectiveness of each system. These metrics were used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of movies.
 
 ### Content-based System
 
@@ -75,6 +75,10 @@ General pipeline:
 3. **Hyperparameter tuning** - finding the optimal number of embeddings to learn for each user and movie. <br/><br/>
 4. **Model training** - updating embeddings until they converge. <br/><br/>
 5. **Recommendations** - sorting movies in order of predicted rating and recommending the top k in the list. <br/><br/>
+
+Visualising movie embeddings using PCA:
+
+<img src="/images/toy_story_vs_saw_embeddings.png" /> <br/><br/>
 
 #### Neural Network Model
 
