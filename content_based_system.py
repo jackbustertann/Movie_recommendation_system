@@ -51,18 +51,18 @@ def create_tf_matrix(preprocessed_column, min_freq = 2, max_freq = 0.1):
     return tf_matrix, features
 
 # outputing a list of recommended movie indices for a given movie
-def top_n_movies(tf_matrix, movie_index, n_rec):
+def top_n_movies_content(tf_matrix, movie_index, n_rec):
     movie_scores = list(enumerate(cosine_similarity(tf_matrix[movie_index,].reshape(1,-1), tf_matrix)[0]))
     sorted_movie_scores = sorted(movie_scores, key = lambda x: x[1], reverse = True)[1:n_rec+1]
     sorted_movie_indices = [movie[0] for movie in sorted_movie_scores]
     return sorted_movie_indices
 
 # outputting a list of recommended movie indices for all movies
-def top_n_movies_list(tf_matrix, n_rec):
+def top_n_movies_list_content(tf_matrix, n_rec):
     top_n_movies_list = []
     n_movies = tf_matrix.shape[0]
     for i in range(n_movies):  
-        sorted_movie_indices = top_n_movies(tf_matrix, i, n_rec)
+        sorted_movie_indices = top_n_movies_content(tf_matrix, i, n_rec)
         sorted_movie_tokens = ['movie' + str(movie) for movie in sorted_movie_indices]
         top_n_movies_list.append(sorted_movie_tokens)
     return top_n_movies_list
@@ -70,7 +70,7 @@ def top_n_movies_list(tf_matrix, n_rec):
 # outputing a list of recommended movie titles for a given movie
 def content_movie_recommender(content_df, tf_matrix, movie_index, n_rec):
     movie_title = content_df.loc[movie_index, 'title']
-    top_n_movie_indices = top_n_movies(tf_matrix, movie_index, n_rec)
+    top_n_movie_indices = top_n_movies_content(tf_matrix, movie_index, n_rec)
     print('Users who like:')
     print(movie_title)
     print ('')
