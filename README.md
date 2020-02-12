@@ -68,6 +68,14 @@ Model assumptions:
 - *Users who give similar ratings for different movies must have similar preferences.* <br/> <br/>
 - *Movies that are given similar ratings by different users must have similar features.* <br/> <br/>
 
+General pipeline:
+
+1. **Spark context** - creating a connection to a Spark cluster. <br/><br/>
+2. **RDD** - partitioning ratings across nodes of cluster for parallel processing. <br/><br/>
+3. **Hyperparameter tuning** - finding the optimal number of embeddings to learn for each user and movie. <br/><br/>
+4. **Model training** - updating embeddings until they converge. <br/><br/>
+5. **Recommendations** - sorting movies in order of predicted rating and recommending the top k in the list. <br/><br/>
+
 #### Neural Network Model
 
 Model assumptions: <br/> <br/>
@@ -83,3 +91,4 @@ Model architecture:
 <img src="/images/nn_architecture.png" /> <br/><br/>
 
 ## Conclusions and Possible Extensions
+
