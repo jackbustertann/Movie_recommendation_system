@@ -96,3 +96,11 @@ Model architecture:
 
 ## Conclusions and Possible Extensions
 
+The content-based system generally outperformed the used-based systems for most instances of users. This is likely to be a result the large amount of sparsity in the user-movie feedback matrix. To address this limitation in the dataset, implicit data such as watch and purchase history could be used in addition to the user ratings to develop a more detailed understanding of each movie.
+
+Possible extensions:
+
+- **Deeper nueral networks** <br/><br/>
+- **Hybrid systems** <br/><br/>
+- **Online metrics**
+
