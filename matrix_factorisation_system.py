@@ -21,11 +21,7 @@ def train_mf_model(train_set, test_set, n_embeddings = 5, n_iterations = 5, reg_
   rmse = np.sqrt(test_ratings_and_predictions.map(lambda x: (x[1][0] - x[1][1])**2).mean())
   return model, rmse
 
-# outputting a list of recommended movie indices for all movies
-def top_n_movies_list_mf(model, users, n_rec):
-  top_n_movies_list = []
-  for user in users:
-    top_n_user_movie_ids = [movie[1] for movie in model.recommendProducts(int(user), n_rec)]
-    top_n_user_movie_tokens = ['movie' + str(movie_id) for movie_id in top_n_user_movie_ids]
-    top_n_movies_list.append(top_n_user_movie_tokens)
-  return top_n_movies_list
+# outputting a list of recommended movie indices for a given user
+def top_n_movies_mf(model, users, n_rec):
+  top_n_movies = [movie[1] for movie in model.recommendProducts(int(user), n_rec)]
+  return top_n_movies
