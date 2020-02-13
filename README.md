@@ -35,7 +35,7 @@ Upon exploring the data, I discovered that:
 
 The modelling process for this project involved building three recommendation systems: a content-based system and two user-based systems. 
 
-In the absence of any online feedback from users, coverage and average cosine dissimilarity between recommendations were used to assess the effectiveness of each system. These metrics were used instead of the conventional rmse metric to account for the level of personalisation in the recommendations and to penalise any system whose recommendations were dominated by a small subset of movies.
+It is important to note that whilst the user-based systems were validated using the conventional rmse metric, the content-based system did not explicitly use the ratings provided by users and so catalog coverage and average cosine dissimilarity between recommendations were used instead for this case. These metrics were chosen for the content-based system to reflect the level of personalisation in the recommendations and to penalise the system if it had any bias towards a small subset of movies.
 
 ### Content-based System
 
@@ -78,7 +78,7 @@ General pipeline:
 
 Visualising movie embeddings using PCA:
 
-<img src="/images/toy_story_vs_saw_embeddings.png" /> <br/><br/>
+<img src="/images/mf_movie_embeddings.png" /> <br/><br/>
 
 #### Neural Network Model
 
@@ -95,4 +95,12 @@ Model architecture:
 <img src="/images/nn_architecture.png" /> <br/><br/>
 
 ## Conclusions and Possible Extensions
+
+The content-based system generally outperformed the used-based systems for most instances of users. This is likely to be a result the large amount of sparsity in the user-movie feedback matrix. To address this limitation in the dataset, implicit data such as watch and purchase history could be used in addition to the user ratings to develop a more detailed understanding of each movie. 
+
+Possible extensions:
+
+- **Deeper nueral networks** <br/><br/>
+- **Hybrid systems** <br/><br/>
+- **Online metrics**
 
