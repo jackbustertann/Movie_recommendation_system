@@ -78,7 +78,7 @@ General pipeline:
 
 Visualising movie embeddings using PCA:
 
-<img src="/images/toy_story_vs_saw_embeddings.png" /> <br/><br/>
+<img src="/images/mf_movie_embeddings.png" /> <br/><br/>
 
 #### Neural Network Model
 
