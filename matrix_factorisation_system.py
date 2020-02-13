@@ -14,7 +14,7 @@ def create_rdd(ratings_df):
   return rdd
 
 # training matrix factorisation model, using PySpark API
-def train_MF_model(train_set, test_set, n_embeddings = 5, n_iterations = 5, reg_param = 0.01):
+def train_mf_model(train_set, test_set, n_embeddings = 5, n_iterations = 5, reg_param = 0.01):
   model = ALS.train(train_set, n_embeddings, iterations = n_iterations, lambda_ = reg_param,  seed = 1)
   test_predictions = model.predictAll(test_set.map(lambda x: (x.user, x.product))).map(lambda x: ((x.user, x.product), x.rating))
   test_ratings_and_predictions = test_set.map(lambda x: ((x.user, x.product), x.rating)).join(test_predictions)
