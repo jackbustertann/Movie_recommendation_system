@@ -96,11 +96,21 @@ Model architecture:
 
 ## Conclusions and Possible Extensions
 
-The content-based system generally outperformed the used-based systems for most instances of users. This is likely to be a result the large amount of sparsity in the user-movie feedback matrix. To address this limitation in the dataset, implicit data such as watch and purchase history could be used in addition to the user ratings to develop a more detailed understanding of each movie. 
+Model performance comparison:
 
-Possible extensions:
+**Content-based system**  
 
-- **Deeper nueral networks** <br/><br/>
-- **Hybrid systems** <br/><br/>
-- **Online metrics**
+- average cosine dissimilarity = 95.9%
+- catalog coverage = 74.3% 
 
+ **User-based systems**
+ 
+- **matrix factorisation model**
+  - rmse = 0.671
+- **neural network model**
+  - rmse = 0.137
+ 
+Conclusions:
+
+- The recommendations from the content-based system were generally more relevant than those from the used-based systems. This is likely to be a result of the large amount of sparsity in the user-movie feedback matrix. To address this limitation in the dataset, implicit data such as watch and purchase history could be used in addition to the user ratings to learn more accurate embeddings for each movie. <br/><br/>
+- The neural network model performed considerably better than the matrix factorisation model. This demonstrates that the hidden layer in the network must have extracted something meaningful from the relationship between the users and movies. As an extension to this project, it would be interesting to see if the addition of extra hidden layers to the network would lead to further improvements in model performance. <br/><br/> 
