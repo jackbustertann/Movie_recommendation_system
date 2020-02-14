@@ -22,7 +22,7 @@ The cleaning process for this project involved:
 
 Upon exploring the data, I discovered that:
 
-1. Users were generally more inclined to give positive reviews. <br/><br/>
+1. Users were generally more inclined to give positive ratings. <br/><br/>
 <img src="/images/rating_counts.png" width="600"/>
 
 2. The most popular movies were generally rated amongst the top 5% of all movies. <br/><br/>
@@ -35,18 +35,18 @@ Upon exploring the data, I discovered that:
 
 The modelling process for this project involved building three recommendation systems: a content-based system and two user-based systems. 
 
-It is important to note that whilst the user-based systems were validated using the conventional rmse metric, the content-based system did not explicitly use the ratings provided by users and so catalog coverage and average cosine dissimilarity between recommendations were used instead for this case. These metrics were chosen for the content-based system to reflect the level of personalisation in the recommendations and to penalise the system if it had any bias towards a small subset of movies.
+It is important to note that whilst the user-based systems were validated using the conventional rmse metric, the content-based system did not explicitly use the ratings provided by users and so catalog coverage and average cosine dissimilarity between recommendations were used instead for this case. These metrics were chosen for the content-based system to reflect the level of personalisation in the recommendations and to penalise the system if it had a strong bias towards a small subset of movies.
 
 ### Content-based System
 
 High level definition: <br/><br/>
-*Recommending movies to users based on explicit features of movies they have watched or rated highly in the past.* <br/><br/>
+*Recommending movies to users based on the explicit features of movies they have watched or rated highly in the past.* <br/><br/>
 
 General pipeline:
 
 1. **Tokenisation** - converting plotlines into a list of lowercase word tokens. <br/><br/>
 <img src="/images/unprocessed_plot_example.png" /> <br/><br/>
-2. **Dimensionality reduction** - removing stopwords and lemmatisation. <br/><br/>
+2. **Dimensionality reduction** - removing stopwords and lemmatisation of words. <br/><br/>
 <img src="/images/processed_plot_example.png" /> <br/><br/>
 3. **Feature engineering** - count vectorising genres, actors, directors, and plotlines (with normalisation). <br/><br/>
 <img src="/images/one-hot_encoding_example.png" /> <br/><br/>
@@ -65,8 +65,8 @@ High level definition: <br/><br/>
 Model assumptions:
 
 - *User ratings can be decomposed into a dot product between user preferences and movie features.* <br/> <br/>
-- *Users who give similar ratings for different movies must have similar preferences.* <br/> <br/>
-- *Movies that are given similar ratings by different users must have similar features.* <br/> <br/>
+- *Users who give similar ratings for the same movies must have similar preferences.* <br/> <br/>
+- *Movies that are given similar ratings by the same users must have similar features.* <br/> <br/>
 
 General pipeline:
 
